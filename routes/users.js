@@ -16,4 +16,7 @@ router.post('/login',
 
 router.get('/logout', auth.checkNotAuthenticated, UserController.logout);
 
+router.get('/addEntry', UserController.addEntryView);
+router.post('/addEntry', UserController.addEntry);
+
 module.exports = router;

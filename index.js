@@ -7,7 +7,7 @@ const session = require('express-session');
 const helmet = require('helmet');
 const pgConnect = require('connect-pg-simple');
 const initializePassport = require("./config/passport");
-
+const multer = require('multer');
 // const { defaultLogger} = require('./config/logger');
 
 // Make all variables from our .env file available in our process
@@ -18,6 +18,10 @@ const app = express();
 
 // set view engine
 app.set('view engine', 'ejs');
+
+
+
+
 
 // setup middleware and configs
 initializePassport(passport);
@@ -60,4 +64,6 @@ const server = app.listen(process.env.PORT || 3000, () => {
     console.log('Express server listening on port %d in %s mode', process.env.PORT, app.settings.env);
 });
 
-module.exports = server;
+module.exports = {
+    server,
+};
