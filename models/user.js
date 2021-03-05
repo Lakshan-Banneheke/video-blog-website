@@ -13,11 +13,6 @@ class User {
         return out.rows[0];
     }
 
-    static async addEntry(values) {
-        const query=`INSERT INTO vlogs(title, description, link, image) VALUES($1, $2, $3, $4)`;
-        await db.query(query, [values.title, values.description, values.link, values.filename]);
-    }
-
 }
 
 module.exports = User;

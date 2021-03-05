@@ -23,6 +23,11 @@
             <li class="nav-article-example" role="presentation"><a href="../template/article.html">Post Example</a></li>
             <li class="nav-about-us" role="presentation"><a href="../template/about.html">Page Example</a></li>
             <li class="nav-author-page" role="presentation"><a href="../template/author.html">Author Page</a></li>
+            <%if (typeof username !== "undefined") {%>
+            <li class="nav-author-page" role="presentation"><a href="/users/addEntry">Add new entry</a></li>
+                <li class="nav-author-page" role="presentation"><a href="/users/logout">Logout</a></li>
+
+            <%}%>
             <span class="socialheader">
 		<a href="#"><span class='symbol'>circletwitterbird</span></a>
 		<a href="#"><span class='symbol'>circlefacebook</span></a>

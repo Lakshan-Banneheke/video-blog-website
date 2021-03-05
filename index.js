@@ -20,17 +20,12 @@ const app = express();
 app.set('view engine', 'ejs');
 
 
-
-
-
 // setup middleware and configs
 initializePassport(passport);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(helmet());
-
-
 
 // setup static files
 app.use(express.static('./public'));
@@ -46,6 +41,20 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+
+app.use(
+    (req, res, next) => {
+        if ((req.isAuthenticated())){
+            console.log("Authenticated");
+            res.locals.username = req.user.username;
+            next();
+        } else {
+            console.log("Not Authenticated");
+            next();
+        }
+    }
+)
 
 // setup routes
 app.use(require('./routes'));

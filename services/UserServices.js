@@ -7,10 +7,6 @@ class UserService {
         const user = await User.getRegisteredUserByUsername(username);
         return user;
     }
-
-    static async addEntry(values) {
-        await User.addEntry(values);
-    }
 }
 
 module.exports = UserService;

@@ -30,11 +30,18 @@
 								 <%= entry.description%>
 								</p>
 							</section>
+
+
 							<footer class="post-meta">
 								<img class="author-thumb" src="assets/img/gravatar.jpg" alt="David" nopin="nopin"/>
 								<a href="../template/author.html">Nadun</a>
 								<time class="post-date" ><%= entry.uploadtimestamp.toString().substring(4,16)%></time>
+
 							</footer>
+							<%if (typeof username !== "undefined") {%>
+							<br>
+							<a class="btn btn-primary btn-lg btn-block" href="/users/editEntry/<%=entry.vlog_id%>" role="button">Edit</a>
+							<%}%>
 						</div>
 					</article>
 				</div>
