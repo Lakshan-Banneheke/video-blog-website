@@ -7,7 +7,6 @@ const session = require('express-session');
 const helmet = require('helmet');
 const pgConnect = require('connect-pg-simple');
 const initializePassport = require("./config/passport");
-const multer = require('multer');
 // const { defaultLogger} = require('./config/logger');
 
 // Make all variables from our .env file available in our process
