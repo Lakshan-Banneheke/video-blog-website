@@ -2,6 +2,8 @@ const vlogService = require('../services/vlogService');
 const multer = require('multer');
 const path = require('path');
 const checkFileType = require('../middleware/checkFileType');
+const fs = require('fs');
+
 
 const addEntryView = (req, res) => {
     res.render('addEntry');
@@ -17,7 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage:storage,
-    limits: {fileSize: 10000000},
+    limits: {fileSize: 1000000},
     fileFilter : function (req, file, cb) {
         checkFileType(file, cb);
     }
@@ -32,7 +34,9 @@ const addEntry = (req, res) => {
             });
         } else {
             let values = req.body;
-            values['filename'] = req.file.filename;
+            let bitmap = fs.readFileSync(req.file.path);
+            let base64 = Buffer(bitmap).toString('base64');
+            values['image'] = base64;
             try{
                 await vlogService.addEntry(values);
                 res.render('addEntry', {
@@ -55,30 +59,8 @@ const editEntryView = async (req, res) => {
 
 
 const editEntry = async (req, res) => {
-    console.log(req.body);
-    if (typeof req.file == 'undefined') {
-        let values = req.body;
-        values['filename'] = req.body.oldImage;
-        try{
-            await vlogService.editEntry(values);
-            const entry = await vlogService.getEntryByID(req.body.id);
-
-            res.render(`editEntry`, {
-                successmsg: 'Edited Succesfully',
-                entry
-
-            });
-        } catch (e) {
-            const entry = await vlogService.getEntryByID(req.body.id);
-            res.render(`editEntry`, {
-                msg: e,
-                entry
-            })
-        }
-    } else {
-        console.log(req.file);
         //TODO delete old image from server if new image added
-        // fs.unlinkSync(`images/${req.params.folder}/${req.params.id}.png`);
+
         upload(req, res, async (err) => {
             if (err) {
                 const entry = await vlogService.getEntryByID(req.body.id);
@@ -88,7 +70,12 @@ const editEntry = async (req, res) => {
                 });
             } else {
                 let values = req.body;
-                values['filename'] = req.file.filename;
+                if (typeof req.file == 'undefined') {
+                    values['filename'] = req.body.oldImage;
+                } else {
+                    // fs.unlinkSync(`uploads/${req.body.oldImage}`);
+                    values['filename'] = req.file.filename;
+                }
                 try {
                     await vlogService.editEntry(values);
                     const entry = await vlogService.getEntryByID(req.body.id);
@@ -104,8 +91,7 @@ const editEntry = async (req, res) => {
                     })
                 }
             }
-        })
-    }
+        });
 }
 
 

@@ -14,9 +14,11 @@ CREATE TABLE vlogs (
     description varchar(1000),
     link varchar(100),
     uploadTimestamp TIMESTAMP NOT NULL DEFAULT NOW(),
-    image varchar(100)
+    image bytea
 );
 
 GRANT ALL ON TABLE public.user_Profile to vlog_app;
 GRANT ALL ON TABLE public.vlogs to vlog_app;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO vlog_app;
+
+INSERT into user_profile(username, password) VALUES('nadun', '$2a$10$kOW6.ySlaD3rXfV/FbWEPemyH328qPfOEM5zfg3AEP2pRBsHa50we');

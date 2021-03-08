@@ -17,10 +17,12 @@
 		<img src="assets/img/shadow.png" class="wrapshadow">
 		<div class="grid">
 			<%entries.forEach((entry) => {%>
-
+				<%var base64img = Buffer.from(entry.image, 'base64'); %>
 				<div class="grid-item">
 					<article class="post">
-						<a href='<%= entry.link %>'><img src='/uploads/<%=entry.image%>'></a>
+						<a href='<%= entry.link %>'>
+							<img src='<%= ("data:image/jpeg;base64, " +  base64img).replace(/"/g,"") %>'>
+						</a>
 						<div class="wrapgriditem">
 							<header class="post-header">
 								<h2 class="post-title"><a href='<%= entry.link %>'><%= entry.title %></a></h2>
