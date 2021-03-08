@@ -28,26 +28,26 @@
             <div class="login-logo">
                 <b>Add new Entry</b>
             </div>
-            <% if (typeof msg !== 'undefined') { %>
-                <div class="alert alert-danger text-center" role="alert"><%= msg %></div>
+            <% if (errormsg) { %>
+                <div class="alert alert-danger text-center" role="alert"><%= errormsg %></div>
             <% } %>
-            <% if (typeof successmsg !== 'undefined') { %>
+            <% if (successmsg) { %>
                 <div class="alert alert-success text-center" role="alert"><%= successmsg %></div>
             <% } %>
 
             <form action="/users/addEntry" method="post">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input class="form-control" id="title" name="title" required>
+                    <input class="form-control" id="title" name="title" value="<%=title%>" required>
                 </div>
                 <div class="form-group">
                     <label for="description">Description (1000 characters)</label>
-                    <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+                    <textarea class="form-control" id="description" rows="3" name="description"><%= description %></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="link">Youtube embed URL</label>
-                    <input class="form-control" id="link" name="link" required>
+                    <input class="form-control" id="link" name="link" value="<%=title%>" required>
                 </div>
 
 
@@ -64,9 +64,8 @@
 
 
             <br>
-            <p class="mb-0">
-                <a href="/" class="text-center btn btn-secondary" role="button"><span class="fas fa-home"></span> Home</a>
-            </p>
+            <a href="/" class="text-center btn btn-secondary btn-block"><span class="fas fa-home"></span> Home</a>
+
 
         </div>
         <!-- /.login-card-body -->

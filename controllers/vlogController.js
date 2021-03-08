@@ -1,19 +1,22 @@
 const vlogService = require('../services/vlogService');
 
 const addEntryView = (req, res) => {
-    res.render('addEntry');
+    console.log(req.params)
+    res.render('addEntry', {
+        successmsg: req.query.successmsg,
+        errormsg: req.query.errormsg,
+        title: req.query.title,
+        description: req.query.description,
+        link: req.query.link
+    });
 }
 
 const addEntry = async (req, res) => {
             try{
-                await vlogService.addEntry(values);
-                res.render('addEntry', {
-                    successmsg: 'Uploaded Succesfully'
-                });
+                await vlogService.addEntry(req.body);
+                res.redirect(`addEntry/?successmsg=Uploaded Succesfully`);
             } catch (e) {
-                res.render('addEntry', {
-                    msg: e,
-                })
+                res.redirect(`addEntry/?errormsg=${e}&title=${req.body.title}&description=${req.body.description}&link=${req.body.link}`)
             }
 
 }
