@@ -23,7 +23,7 @@ const editEntry = async(values) => {
 }
 
 const deleteEntry = async(id) => {
-    const query=`DELET FROM vlogs WHERE vlog_id=$1`;
+    const query=`DELETE FROM vlogs WHERE vlog_id=$1`;
     await db.query(query, [id]);
 }
 
