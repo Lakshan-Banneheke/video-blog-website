@@ -13,7 +13,7 @@ CREATE TABLE vlogs (
     title varchar(50),
     description varchar(1000),
     link varchar(100),
-    uploadTimestamp TIMESTAMP NOT NULL DEFAULT NOW(),
+    uploadTimestamp TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 GRANT ALL ON TABLE public.user_Profile to vlog_app;
