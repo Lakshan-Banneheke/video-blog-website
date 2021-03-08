@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 initializePassport(passport);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(helmet());
 
 // setup static files
