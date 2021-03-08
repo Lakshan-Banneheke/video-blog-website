@@ -18,7 +18,7 @@ const getEntryByID = async(id) => {
 }
 
 const editEntry = async(values) => {
-    const query=`UPDATE vlogs SET title=$1, description=$2, link=$3, WHERE vlog_id=$4`;
+    const query=`UPDATE vlogs SET title=$1, description=$2, link=$3 WHERE vlog_id=$4`;
     await db.query(query, [values.title, values.description, values.link, values.id]);
 }
 
