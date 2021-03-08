@@ -12,8 +12,13 @@ const editEntry = async (values) => {
     await Vlog.editEntry(values);
 }
 
+const deleteEntry = async (id) => {
+    await Vlog.deleteEntry(id);
+}
+
 module.exports = {
     addEntry,
     getEntryByID,
-    editEntry
+    editEntry,
+    deleteEntry
 }

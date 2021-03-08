@@ -22,5 +22,6 @@ router.post('/addEntry', auth.checkNotAuthenticated, VlogController.addEntry);
 
 router.get('/editEntry/:id', auth.checkNotAuthenticated, VlogController.editEntryView);
 router.post('/editEntry', auth.checkNotAuthenticated, VlogController.editEntry);
+router.delete('/editEntry', auth.checkNotAuthenticated, VlogController.deleteEntry);
 
 module.exports = router;

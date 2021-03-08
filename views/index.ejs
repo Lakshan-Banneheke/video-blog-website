@@ -17,12 +17,10 @@
 		<img src="assets/img/shadow.png" class="wrapshadow">
 		<div class="grid">
 			<%entries.forEach((entry) => {%>
-				<%var base64img = Buffer.from(entry.image, 'base64'); %>
 				<div class="grid-item">
 					<article class="post">
-						<a href='<%= entry.link %>'>
-							<img src='<%= ("data:image/jpeg;base64, " +  base64img).replace(/"/g,"") %>'>
-						</a>
+						<iframe width="100%" height="230" src="<%entry.link%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 						<div class="wrapgriditem">
 							<header class="post-header">
 								<h2 class="post-title"><a href='<%= entry.link %>'><%= entry.title %></a></h2>
@@ -53,10 +51,7 @@
 
 
 		</div>
-		<nav class="pagination" role="navigation">
-		<span class="page-number">Page 1 of 2</span>
-		<a class="older-posts" href="../template/page2.html">Older Posts &rarr;</a>
-		</nav>
+
 	</div>
 	</main>
 

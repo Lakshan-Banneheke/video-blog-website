@@ -14,7 +14,6 @@ CREATE TABLE vlogs (
     description varchar(1000),
     link varchar(100),
     uploadTimestamp TIMESTAMP NOT NULL DEFAULT NOW(),
-    image bytea
 );
 
 GRANT ALL ON TABLE public.user_Profile to vlog_app;
