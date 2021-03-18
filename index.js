@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require('express-session');
 const helmet = require('helmet');
-const pgConnect = require('connect-pg-simple');
+// const pgConnect = require('connect-pg-simple');
 const initializePassport = require("./config/passport");
 // const { defaultLogger} = require('./config/logger');
 
@@ -31,11 +31,11 @@ app.use(express.static('./public'));
 
 // session set up
 app.use(session({
-    // store: new (pgConnect(session))({ conString: process.env.DATABASE_URL }),
+    store: new (require('connect-pg-simple')(session))(),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    // cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
 }));
 app.use(passport.initialize());
 app.use(passport.session());
